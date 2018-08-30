@@ -1,7 +1,6 @@
-# rspec-testing-in-rails
+# RSpec + Rails Testing
 A breakdown of how to test in Ruby on Rails and why it's important
 
-# RSpec + Rails Testing
 ## What is a test and why should we test?
 Tests verify that your code behaves correctly and produces your desired result. It should set up a state with a known result in order to compare the expectation to the actual behavior. 
 
