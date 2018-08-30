@@ -201,7 +201,7 @@ end
 `describe "current_age_for_birth_year method" do`
 - The `it` method in RSpec states an expectation or behavior of that method is used to only provide the description of what behavior is currently being tested:
 `it "returns the age of a person based on the year of birth" do`
-- Rspec reports what is working and what is not and why
+- RSpec reports what is working and what is not and why
 
 #### Common errors
 - NoMethodError: if the method was not defined
@@ -209,9 +209,9 @@ end
 
 ## Conclusion
 
-There are a ton of resources that you can use to learn more of the ins and outs of RSpec and testing. We’ve included links below. Understanding testing is important, as test-driven development is considered the most reliable methodology for delivering clean, quality code.
+There are a ton of resources you can use to learn more of the ins and outs of RSpec and testing. We’ve included links below. Understanding testing is important, as test-driven development is considered the most reliable methodology for delivering clean, quality code.
 
-
+![alt text](https://media.giphy.com/media/LLR3cBvqxpamY/giphy.gif)
 
 ## Resources:
 http://rspec.info/about/ 
