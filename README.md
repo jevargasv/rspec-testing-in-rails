@@ -77,7 +77,6 @@ Your response should look something like this:
 ```
 Finished in 0.039215s, 76.5013 runs/s, 76.5013 assertions/s.
 3 runs, 3 assertions, 2 failures, 0 errors, 0 skips
-3 runs, 3 assertions, 2 failures, 0 errors, 0 skips
 ```
 Note that three tests were run but zero assertions were made. That's what we need to do next: add assertions.
 
@@ -98,7 +97,7 @@ class UserTest < ActiveSupport::TestCase
     assert @user.valid?
   end
 
-#This should assert or return true, since we passed in all the proper information.
+# This should 'assert' true, since we passed in all the proper information.
 
   test 'invalid without name' do
     @user.name = nil
@@ -106,7 +105,7 @@ class UserTest < ActiveSupport::TestCase
     assert_not_nil @user.errors[:name], 'no validation error for name present'
   end
   
-#We put refute here, because if the person puts a blank name, our app should return an error. The optional comment will help explain to us what went wrong.
+# We put 'refute' here, because if the person puts a blank name, our app should return an error. The optional comment will help explain to us what went wrong.
 
   test 'invalid without email' do
     @user.email = nil
@@ -114,12 +113,12 @@ class UserTest < ActiveSupport::TestCase
     assert_not_nil @user.errors[:email]
   end
   
- #We used refute here as well, because if the person puts an email field blank, our app should return an error.
+ # We used 'refute' here as well, because if the person puts an email field blank, our app should return an error.
  
 end
 ```
 
-4. Now if we $rake again we should still get errors, but they should point us to what we forgot: to add the validation to the User model:
+4. Now if we $rake again we should still get errors, but they should point us to what we forgot: to add the proper validations to make sure we can't save users without a name.
 ```
 F
 
@@ -129,13 +128,12 @@ saved user without a name
 ```
 
 ## Alternatives: Rspec
-Rspec is the largest and most well-maintained alternative to MiniSpec. Latest version was 3.8 released earlier this month (August 2018). It focuses on readability and composability of tests, using more plain English in naming tests and test groups. It was created for behavior-driven development, an evolution of its predecessor, TDD (test-driven development).
+Rspec is the largest and most well-maintained alternative to MiniSpec. The latest version was 3.8 released earlier this month (August 2018). It focuses on readability and composability of tests, using more plain English to compose them. It was created for behavior-driven development, an evolution of its predecessor, TDD (test-driven development).
 
 The main idea is to write tests as specifications of system behavior. It means that it has different 
-methods of approaching the same problem which helps engineers think more clearly and make sure their refactoring is successful each step of the way. Because it can be very easy to get stuck and get lost on unnecessary code with no plans at all.
+methods of approaching the same problem, which helps engineers think more clearly and make sure their refactoring is successful each step of the way.
 
-This is an example written with test/unit, which comes standard with Rails:
-:
+Here is a shorthand example written with test/unit, which comes standard with Rails:
 ```
 def test_making_order
   book = Book.new(:title => "RSpec Intro", :price => 20)
@@ -203,7 +201,7 @@ end
 `describe "current_age_for_birth_year method" do`
 - The `it` method in RSpec states an expectation or behavior of that method is used to only provide the description of what behavior is currently being tested:
 `it "returns the age of a person based on the year of birth" do`
-- Rspec reports on what is working and what is not and why
+- Rspec reports what is working and what is not and why
 
 #### Common errors
 - NoMethodError: if the method was not defined
