@@ -13,31 +13,41 @@ If you have code for a form that includes email, password, and age input, you wa
 We should test to deliver quality code, which doesn’t break and is easy for other developers to understand.
 
 ### Basic Procedure:
-1. Write the smallest and possible test case that matches the program’s needs.
-2. Run several tests through many trials and errors with the chance of rewriting the correct code to make it work.
-3. Rewrite the correct code to make the test run successfully.
-4. Run the test suite and repeat Steps 3 and 4 until all tests pass.
-5. Finally, refactor the code by making sure that it is simple and clear with no errors while running the tests successfully by keeping the test suite green.
+1. Write the smallest possible test case that matches the program’s needs.
+2. Run several tests to try and catch every possible edge case.
+3. Attempt to correct errors wherever they appear in the app. Run tests again.
+4. Run the test suite and repeat Steps 2 and 3 until all tests pass.
+5. Continue to develop and refactor, running old tests and creating new ones to make sure you're not breaking anything as you add new functionality.
 
 ## What tools can we use?
-By default, every Rails application has three environments: development, production, and test. It’s created every time you run “rails new,” and is referred to as MiniTest.
+By default, every Rails application has three environments: development, production, and test. They're created every time you run “$rails new." Rails' default testing suite is referred to as MiniTest.
 
-The contents of this directory:
-
+Find and review of the the contents of the test folder by running: 
+```
 $ ls -F test
+```
+Response:
+```
 controllers/           helpers/               mailers/               system/                test_helper.rb
 fixtures/              integration/           models/                application_system_test_case.rb
-
+```
 Each folder is designed to hold tests for that specific feature.
+
+For example:
 - “Controllers” holds tests for controllers, routes, and views. 
 - “Integration” is meant to hold tests for interactions between controllers.
 
-## How it works
-Say you were making a sign-up form and want to make sure someone doesn’t submit an invalid email or blank name field.
-1. Create the model/migrate:
+## DEMO: How it works
+Say you were making a sign-up form and want to make sure someone doesn’t submit an invalid email or blank name field. Here's how you would build the appropriate test to make sure you're validating correctly:
+
+1. Create the app a new app and model:
+	```
+	$ rails new testapp -d postgresql
 	$ rails g model User name:string email:string
+	```
 	
-2. Create the test:
+2. Create 3 tests to 1) make sure a proper user sign-up comes up valid, 2 & 3) make sure the user is invalid if they forgot to fill out either the name or email forms:
+
 #test/models/user_test.rb
 ```
 require 'test_helper'
@@ -59,7 +69,19 @@ class UserTest < ActiveSupport::TestCase
 end
 ```
 
-3. Run the test with — $rake. Note that three tests were run but zero assertions were made. We have to add assertions. We'll also add a setup to help DRY up our code:
+3. Run a sample test: 
+```
+$rake.
+```
+Your response should look something like this:
+```
+Finished in 0.039215s, 76.5013 runs/s, 76.5013 assertions/s.
+3 runs, 3 assertions, 2 failures, 0 errors, 0 skips
+3 runs, 3 assertions, 2 failures, 0 errors, 0 skips
+```
+Note that three tests were run but zero assertions were made. That's what we need to do next: add assertions.
+
+4. Fill out tests with assertions for actions we want to work and refutions for actions we don't want to allow. We'll also define a 'setup' to help DRY up our code:
 ```
 require 'test_helper'
 
@@ -71,16 +93,20 @@ class UserTest < ActiveSupport::TestCase
   def setup
     @user = User.new(name: 'John', email: 'john@example.com')
   end
-
+  
   test 'valid user' do
     assert @user.valid?
   end
+
+#This should assert or return true, since we passed in all the proper information.
 
   test 'invalid without name' do
     @user.name = nil
     refute @user.valid?, 'saved user without a name'
     assert_not_nil @user.errors[:name], 'no validation error for name present'
   end
+  
+#We put refute here, because if the person puts a blank name, our app should return an error. The optional comment will help explain to us what went wrong.
 
   test 'invalid without email' do
     @user.email = nil
@@ -88,10 +114,19 @@ class UserTest < ActiveSupport::TestCase
     assert_not_nil @user.errors[:email]
   end
   
+ #We used refute here as well, because if the person puts an email field blank, our app should return an error.
+ 
 end
 ```
 
-4. If we $rake again we should still get errors, but they should point us to what we forgot… 
+4. Now if we $rake again we should still get errors, but they should point us to what we forgot: to add the validation to the User model:
+```
+F
+
+Failure:
+UserTest#test_invalid_w/o_name [/Users/tomxbarnesx/Documents/exs/rails/testing/testapp/test/models/user_test.rb:17]:
+saved user without a name
+```
 
 ## Alternatives: Rspec
 Rspec is the largest and most well-maintained alternative to MiniSpec. Latest version was 3.8 released earlier this month (August 2018). It focuses on readability and composability of tests, using more plain English in naming tests and test groups. It was created for behavior-driven development, an evolution of its predecessor, TDD (test-driven development).
