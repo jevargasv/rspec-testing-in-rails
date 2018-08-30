@@ -98,7 +98,8 @@ Rspec is the largest and most well-maintained alternative to MiniSpec. Latest ve
 The main idea is to write tests as specifications of system behavior. It means that it has different 
 methods of approaching the same problem which helps engineers think more clearly and make sure their refactoring is successful each step of the way. Because it can be very easy to get stuck and get lost on unnecessary code with no plans at all.
 
-This is an example written with test/unit in Ruby on Rails:
+This is an example written with test/unit, which comes standard with Rails:
+:
 ```
 def test_making_order
   book = Book.new(:title => "RSpec Intro", :price => 20)
@@ -159,15 +160,16 @@ describe "current_age_for_birth_year method" do
   end
 end
 ```
-Install RSpec and run rspec --init to set up project to use Rspec
-First line of test file, connects test to code
-require_relative '../current_age_for_birth_year.rb'
-The describe method in RSpec describes the method we are testing in the code file
-describe "current_age_for_birth_year method" do
-The it method in RSpec states an expectation or behavior of that method is used to only provide the description of what behavior is currently being tested
-it "returns the age of a person based on the year of birth" do
-Rspec reports on what is working and what is not and why
-Common errors
+-Install RSpec and run rspec --init to set up project to use Rspec
+-First line of test file, connects test to code:
+`require_relative '../current_age_for_birth_year.rb'`
+-The describe method in RSpec describes the method we are testing in the code file
+`describe "current_age_for_birth_year method" do`
+-The `it` method in RSpec states an expectation or behavior of that method is used to only provide the description of what behavior is currently being tested
+-it "returns the age of a person based on the year of birth" do
+-Rspec reports on what is working and what is not and why
+
+#### Common errors
 NoMethodError: if the method was not defined
 ArgumentError: if the method definition does not exist
 
