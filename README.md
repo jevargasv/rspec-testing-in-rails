@@ -2,14 +2,15 @@
 A breakdown of how to test in Ruby on Rails and why it's important
 
 ## What is a test and should we do it?
-Tests verify that your code behaves correctly and produces your desired result. It should set up a state with a known result in order to compare the expectation to the actual behavior. 
+Tests verify that your code behaves correctly and produces your desired result. It should set up a state with a known result in order to compare the expected result to the actual behavior. 
 
 Example:
-You want to write code to validate the presence of an email…
-Or make sure a user’s password includes certain special characters...
-Or make sure a user’s age is being calculated correctly...
+If you have code for a form that includes email, password, and age input, you want to test to:
+*validate the presence of an email
+*user’s password includes specific special characters
+*user’s age is being calculated correctly
 
-Proper testing relies on careful pseudocoding which accounts for edge-cases and specifically defines what counts as a successful output.
+We should test to deliver quality code, which doesn’t break and is easy for other developers to understand.
 
 ### Basic Procedure:
 1. Write the smallest and possible test case that matches the program’s needs.
