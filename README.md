@@ -99,7 +99,55 @@ The main idea is to write tests as specifications of system behavior. It means t
 methods of approaching the same problem which helps engineers think more clearly and make sure their refactoring is successful each step of the way. Because it can be very easy to get stuck and get lost on unnecessary code with no plans at all.
 
 This is an example written with test/unit in Ruby on Rails:
+```
+def test_making_order
+  book = Book.new(:title => "RSpec Intro", :price => 20)
+  customer = Customer.new
+  order = Order.new(customer, book)
 
+  order.submit
+
+  assert(customer.orders.last == order)
+  assert(customer.ordered_books.last == book)
+  assert(order.complete?)
+  assert(!order.shipped?)
+end
+```
+
+With RSpec, it gets very detailed and clear to understand its behavior:
+```
+describe Order do
+  describe "#submit" do
+
+    before do
+      @book = Book.new(:title => "RSpec Intro", :price => 20)
+      @customer = Customer.new
+      @order = Order.new(@customer, @book)
+
+      @order.submit
+    end
+
+    describe "customer" do
+      it "puts the ordered book in customer's order history" do
+        expect(@customer.orders).to include(@order)
+        expect(@customer.ordered_books).to include(@book)
+      end
+    end
+
+    describe "order" do
+      it "is marked as complete" do
+        expect(@order).to be_complete
+      end
+
+      it "is not yet shipped" do
+        expect(@order).not_to be_shipped
+      end
+    end
+  end
+end
+```
+
+## How to Install and Interpret Rspec 
 ```
 require_relative '../current_age_for_birth_year.rb'
 
@@ -111,11 +159,6 @@ describe "current_age_for_birth_year method" do
   end
 end
 ```
-
-With RSpec, it gets very detailed and clear to understand its behavior:
-
-
-## How to Install and Interpret Rspec 
 Install RSpec and run rspec --init to set up project to use Rspec
 First line of test file, connects test to code
 require_relative '../current_age_for_birth_year.rb'
