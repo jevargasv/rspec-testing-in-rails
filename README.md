@@ -12,11 +12,11 @@ Or make sure a user’s age is being calculated correctly...
 Proper testing relies on careful pseudocoding which accounts for edge-cases and specifically defines what counts as a successful output.
 
 ### Basic Procedure:
-Write the smallest and possible test case that matches the program’s needs.
-Run several tests through many trials and errors with the chance of rewriting the correct code to make it work.
-Rewrite the correct code to make the test run successfully.
-Run the test suite and repeat Steps 3 and 4 until all tests pass.
-Finally, refactor the code by making sure that it is simple and clear with no errors while running the tests successfully by keeping the test suite green.
+1. Write the smallest and possible test case that matches the program’s needs.
+2. Run several tests through many trials and errors with the chance of rewriting the correct code to make it work.
+3. Rewrite the correct code to make the test run successfully.
+4. Run the test suite and repeat Steps 3 and 4 until all tests pass.
+5. Finally, refactor the code by making sure that it is simple and clear with no errors while running the tests successfully by keeping the test suite green.
 
 ## What tools can we use?
 By default, every Rails application has three environments: development, production, and test. It’s created every time you run “rails new,” and is referred to as MiniTest.
