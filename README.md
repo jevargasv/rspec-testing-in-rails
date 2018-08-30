@@ -217,10 +217,11 @@ There are a ton of resources you can use to learn more of the ins and outs of RS
 
 ## Resources:
 MiniTest:
-- https://hackernoon.com/your-guide-to-testing-in-ruby-on-rails-5-c8bd122e38ad
+- https://guides.rubyonrails.org/testing.html
 - https://medium.com/@ethanryan/getting-started-with-testing-in-rails-using-minitest-and-rspec-113fe1f866a
 
 RSpec:
+- https://hackernoon.com/your-guide-to-testing-in-ruby-on-rails-5-c8bd122e38ad
 - http://rspec.info/documentation/
 - https://relishapp.com/rspec
 - https://learn.co/tracks/bootcamp-prep/ruby-fundamentals/methods/tdd-rspec-and-learn
