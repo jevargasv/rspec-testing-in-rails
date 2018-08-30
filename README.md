@@ -170,8 +170,8 @@ end
 -Rspec reports on what is working and what is not and why
 
 #### Common errors
-NoMethodError: if the method was not defined
-ArgumentError: if the method definition does not exist
+- NoMethodError: if the method was not defined
+- ArgumentError: if the method definition does not exist
 
 ## Conclusion
 
