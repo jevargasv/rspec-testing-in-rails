@@ -160,14 +160,14 @@ describe "current_age_for_birth_year method" do
   end
 end
 ```
--Install RSpec and run rspec --init to set up project to use Rspec
--First line of test file, connects test to code:
+- Install RSpec and run rspec --init to set up project to use Rspec
+- First line of test file, connects test to code:
 `require_relative '../current_age_for_birth_year.rb'`
--The describe method in RSpec describes the method we are testing in the code file
+- The describe method in RSpec describes the method we are testing in the code file
 `describe "current_age_for_birth_year method" do`
--The `it` method in RSpec states an expectation or behavior of that method is used to only provide the description of what behavior is currently being tested
--it "returns the age of a person based on the year of birth" do
--Rspec reports on what is working and what is not and why
+- The `it` method in RSpec states an expectation or behavior of that method is used to only provide the description of what behavior is currently being tested:
+`it "returns the age of a person based on the year of birth" do`
+- Rspec reports on what is working and what is not and why
 
 #### Common errors
 - NoMethodError: if the method was not defined
