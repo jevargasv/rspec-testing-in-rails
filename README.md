@@ -19,6 +19,8 @@ We should test to deliver quality code, which doesn’t break and is easy for ot
 4. Run the test suite and repeat Steps 2 and 3 until all tests pass.
 5. Continue to develop and refactor, running old tests and creating new ones to make sure you're not breaking anything as you add new functionality.
 
+![alt-text](https://media.giphy.com/media/igDIvcIMMGIne/giphy.gif)
+
 ## What tools can we use?
 By default, every Rails application has three environments: development, production, and test. They're created every time you run “$rails new." Rails' default testing suite is referred to as MiniTest.
 
