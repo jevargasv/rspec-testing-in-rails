@@ -20,22 +20,77 @@ Proper testing relies on careful pseudocoding which accounts for edge-cases and 
 
 ## What tools can we use?
 By default, every Rails application has three environments: development, production, and test. It’s created every time you run “rails new,” and is referred to as MiniTest.
+
 The contents of this directory:
 
+$ ls -F test
+controllers/           helpers/               mailers/               system/                test_helper.rb
+fixtures/              integration/           models/                application_system_test_case.rb
+
 Each folder is designed to hold tests for that specific feature.
-“Controllers” holds tests for controllers, routes, and views. 
-“Integration” is meant to hold tests for interactions between controllers.
+- “Controllers” holds tests for controllers, routes, and views. 
+- “Integration” is meant to hold tests for interactions between controllers.
 
 ## How it works
 Say you were making a sign-up form and want to make sure someone doesn’t submit an invalid email or blank name field.
-Create the model/migrate:
+1. Create the model/migrate:
 	$ rails g model User name:string email:string
-Create the test:
+	
+2. Create the test:
 #test/models/user_test.rb
+```
+require 'test_helper'
 
-3. Run the test with — $ rake. Note that three tests were run but zero assertions were made. We have to add assertions:
+class UserTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 
-4. If we $ rake again we should still get errors, but they should point us to what we forgot… 
+  test 'valid user' do
+  end
+
+  test 'invalid without name' do
+  end
+
+  test 'invalid without email' do
+  end
+  
+end
+```
+
+3. Run the test with — $rake. Note that three tests were run but zero assertions were made. We have to add assertions. We'll also add a setup to help DRY up our code:
+```
+require 'test_helper'
+
+class UserTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
+
+  def setup
+    @user = User.new(name: 'John', email: 'john@example.com')
+  end
+
+  test 'valid user' do
+    assert @user.valid?
+  end
+
+  test 'invalid without name' do
+    @user.name = nil
+    refute @user.valid?, 'saved user without a name'
+    assert_not_nil @user.errors[:name], 'no validation error for name present'
+  end
+
+  test 'invalid without email' do
+    @user.email = nil
+    refute @user.valid?
+    assert_not_nil @user.errors[:email]
+  end
+  
+end
+```
+
+4. If we $rake again we should still get errors, but they should point us to what we forgot… 
 
 ## Alternatives: Rspec
 Rspec is the largest and most well-maintained alternative to MiniSpec. Latest version was 3.8 released earlier this month (August 2018). It focuses on readability and composability of tests, using more plain English in naming tests and test groups. It was created for behavior-driven development, an evolution of its predecessor, TDD (test-driven development).
